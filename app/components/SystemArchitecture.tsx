@@ -96,8 +96,6 @@ export default function SystemArchitecture() {
               </h3>
               <p className="text-white mb-6">{project.description}</p>
 
-              {project.details && <div className="mb-6"></div>}
-
               {project.tech && (
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech, i) => (
