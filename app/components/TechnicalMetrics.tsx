@@ -1,116 +1,144 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 export default function TechnicalMetrics() {
-	return (
-		<section className="py-20 px-4 bg-gray-900/50">
-			<div className="max-w-6xl mx-auto">
-				<motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-3xl font-bold mb-12 text-center">
-					Impact & Achievements
-				</motion.h2>
+  return (
+    <section className="py-20 px-4">
+      <div className="max-w-6xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-3xl font-bold mb-12 text-center"
+        >
+          Work Experience
+        </motion.h2>
 
-				<div className="grid grid-cols-1 gap-12">
-					{/* System Performance */}
-					<div>
-						<h3 className="text-xl font-semibold mb-6 text-green-400">System Performance</h3>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-							<motion.div
-								initial={{ opacity: 0, scale: 0.95 }}
-								whileInView={{ opacity: 1, scale: 1 }}
-								viewport={{ once: true }}
-								className="bg-gray-800/50 rounded-lg p-6 border border-gray-700"
-							>
-								<h4 className="text-lg font-semibold text-gray-300">API Gateway</h4>
-								<ul className="mt-2 space-y-2 text-gray-400">
-									<li>• P95 latency reduced from 250ms to 80ms</li>
-									<li>• 99.99% availability achieved</li>
-									<li>• Handles 2M requests/day</li>
-								</ul>
-							</motion.div>
-							<motion.div
-								initial={{ opacity: 0, scale: 0.95 }}
-								whileInView={{ opacity: 1, scale: 1 }}
-								viewport={{ once: true }}
-								className="bg-gray-800/50 rounded-lg p-6 border border-gray-700"
-							>
-								<h4 className="text-lg font-semibold text-gray-300">Database Optimization</h4>
-								<ul className="mt-2 space-y-2 text-gray-400">
-									<li>• Query response time improved by 70%</li>
-									<li>• Implemented efficient indexing strategy</li>
-									<li>• Reduced DB load by 45%</li>
-								</ul>
-							</motion.div>
-						</div>
-					</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Greenpoint Financial */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-gray-800 rounded-lg p-6 border border-gray-700"
+          >
+            <h3 className="text-xl font-semibold mb-4 text-green-400">
+              Greenpoint Financial
+            </h3>
+            <h4 className="text-lg font-semibold text-gray-300">
+              Software Engineer Intern
+            </h4>
+            <ul className="mt-2 space-y-2 text-gray-400">
+              <li>
+                • Built Python web scraper with BeautifulSoup to extract
+                financial rates from HTML
+              </li>
+              <li>
+                • Deployed scraper via Azure Functions with scheduled triggers,
+                saving 10+ hours/week
+              </li>
+              <li>
+                • Designed relational schemas to clean and analyze data from
+                100+ banks
+              </li>
+              <li>
+                • Built Power BI dashboards with C-suite, improving investment
+                strategy by 50%
+              </li>
+            </ul>
+          </motion.div>
 
-					{/* Infrastructure & DevOps */}
-					<div>
-						<h3 className="text-xl font-semibold mb-6 text-green-400">Infrastructure & DevOps</h3>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-							<motion.div
-								initial={{ opacity: 0, scale: 0.95 }}
-								whileInView={{ opacity: 1, scale: 1 }}
-								viewport={{ once: true }}
-								className="bg-gray-800/50 rounded-lg p-6 border border-gray-700"
-							>
-								<h4 className="text-lg font-semibold text-gray-300">Cloud Infrastructure</h4>
-								<ul className="mt-2 space-y-2 text-gray-400">
-									<li>• Reduced AWS costs by 35%</li>
-									<li>• Implemented auto-scaling for 20+ services</li>
-									<li>• Zero-downtime deployments</li>
-								</ul>
-							</motion.div>
-							<motion.div
-								initial={{ opacity: 0, scale: 0.95 }}
-								whileInView={{ opacity: 1, scale: 1 }}
-								viewport={{ once: true }}
-								className="bg-gray-800/50 rounded-lg p-6 border border-gray-700"
-							>
-								<h4 className="text-lg font-semibold text-gray-300">CI/CD Pipeline</h4>
-								<ul className="mt-2 space-y-2 text-gray-400">
-									<li>• Reduced deployment time by 65%</li>
-									<li>• Automated testing coverage at 90%</li>
-									<li>• Integration tests success rate 99.5%</li>
-								</ul>
-							</motion.div>
-						</div>
-					</div>
+          {/* Creative Labs */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-gray-800 rounded-lg p-6 border border-gray-700"
+          >
+            <h3 className="text-xl font-semibold mb-4 text-green-400">
+              Creative Labs
+            </h3>
+            <h4 className="text-lg font-semibold text-gray-300">
+              Developer Lead
+            </h4>
+            <ul className="mt-2 space-y-2 text-gray-400">
+              <li>
+                • Led 6 developers through agile sprints, set GitHub code review
+                standards
+              </li>
+              <li>
+                • Coordinated with designers to implement 20+ Figma mockups
+              </li>
+              <li>
+                • Full-stack dev: React Native (frontend), Node.js/Express
+                (backend), Firebase, MongoDB
+              </li>
+              <li>
+                • Designed system for attribute aggregation and
+                sentiment-adjusted ratings
+              </li>
+            </ul>
+          </motion.div>
 
-					{/* Development & Leadership */}
-					<div>
-						<h3 className="text-xl font-semibold mb-6 text-green-400">Development & Leadership</h3>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-							<motion.div
-								initial={{ opacity: 0, scale: 0.95 }}
-								whileInView={{ opacity: 1, scale: 1 }}
-								viewport={{ once: true }}
-								className="bg-gray-800/50 rounded-lg p-6 border border-gray-700"
-							>
-								<h4 className="text-lg font-semibold text-gray-300">Code Quality</h4>
-								<ul className="mt-2 space-y-2 text-gray-400">
-									<li>• Led adoption of TypeScript across backend</li>
-									<li>• Established coding standards</li>
-									<li>• Reduced technical debt by 40%</li>
-								</ul>
-							</motion.div>
-							<motion.div
-								initial={{ opacity: 0, scale: 0.95 }}
-								whileInView={{ opacity: 1, scale: 1 }}
-								viewport={{ once: true }}
-								className="bg-gray-800/50 rounded-lg p-6 border border-gray-700"
-							>
-								<h4 className="text-lg font-semibold text-gray-300">Team Impact</h4>
-								<ul className="mt-2 space-y-2 text-gray-400">
-									<li>• Mentored 4 junior developers</li>
-									<li>• Created 30+ technical documentation guides</li>
-									<li>• Led 3 major system migrations</li>
-								</ul>
-							</motion.div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	);
+          {/* UCLA Radio */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-gray-800 rounded-lg p-6 border border-gray-700"
+          >
+            <h3 className="text-xl font-semibold mb-4 text-green-400">
+              UCLA Radio
+            </h3>
+            <h4 className="text-lg font-semibold text-gray-300">
+              Software Developer
+            </h4>
+            <ul className="mt-2 space-y-2 text-gray-400">
+              <li>
+                • Contributed to Show Archive site using Next.js for filtering
+                and streaming broadcasts
+              </li>
+              <li>
+                • Automated processing of 1,000+ show records using Pandas and
+                GCP Drive API
+              </li>
+              <li>
+                • Helped modernize the station’s tech stack as part of a
+                20-person dev/design team
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Code Ninjas */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-gray-800 rounded-lg p-6 border border-gray-700"
+          >
+            <h3 className="text-xl font-semibold mb-4 text-green-400">
+              Code Ninjas
+            </h3>
+            <h4 className="text-lg font-semibold text-gray-300">
+              Coding Instructor
+            </h4>
+            <ul className="mt-2 space-y-2 text-gray-400">
+              <li>
+                • Taught 200+ students (ages 7–14) in Python, JavaScript, C#,
+                Lua, and block coding
+              </li>
+              <li>
+                • Designed curriculum and led summer camps for 20+ students
+              </li>
+              <li>
+                • Engaged with parents and achieved 75% student enrollment rate
+                through curriculum demos
+              </li>
+            </ul>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 }
