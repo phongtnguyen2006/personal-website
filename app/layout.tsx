@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "Cloud Computing",
     "Microservices",
     "DevOps",
-    "[Your Name]",
+    "Phong Nguyen",
     "Node.js",
     "Python",
     "Java",
@@ -33,20 +33,20 @@ export const metadata: Metadata = {
     "System Design",
     "Backend Architecture",
   ],
-  authors: [{ name: "[Your Name]" }],
-  creator: "[Your Name]",
+  authors: [{ name: "Phong Nguyen" }],
+  creator: "Phong Nguyen",
   openGraph: {
-    title: "[Your Name] - Backend Developer Portfolio",
+    title: "Phong Nguyen",
     description:
       "Passionate backend developer crafting scalable and efficient server architectures. Explore my projects and technical expertise.",
     url: "https://your-domain.com",
-    siteName: "[Your Name] - Portfolio",
+    siteName: "Phong Nguyen - Portfolio",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "[Your Name] - Backend Developer Portfolio",
+        alt: "Phong Nguyen",
       },
     ],
     locale: "en_US",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "[Your Name] - Backend Developer",
+    title: "Phong Nguyen",
     description:
       "Passionate backend developer crafting scalable and efficient server architectures. Explore my projects and technical expertise.",
     creator: "@yourusername",
