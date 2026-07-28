@@ -9,7 +9,7 @@ export const profile = {
   ipa: "/fʌŋ ˈnwɪn/",
   pos: "n.",
   gloss: "cs + linguistics @ ucla",
-  bio: "i mostly build the plumbing behind AI agents — RAG pipelines, MCP servers, and the unglamorous data infrastructure that makes the fun parts possible. i got here through a weird double major: linguistics turns out to be great training for thinking about how machines parse meaning. outside of that i cook, fish, and play too much soccer.",
+  bio: "i mostly build the plumbing behind AI agents — RAG pipelines, MCP servers, and the unglamorous data infrastructure that makes the fun parts possible. i got here through a double major in cs + linguistics: linguistics turns out to be great training for thinking about how machines parse meaning. outside of that i cook, fish, and play soccer.",
   currently: {
     role: "investment swe intern",
     org: "sixth street partners",

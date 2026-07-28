@@ -11,7 +11,7 @@ export default function Projects() {
         entry="03"
         word="builds"
         pos="n. pl."
-        gloss="things i made because i wanted them to exist"
+        gloss="things i made because i was bored"
       />
 
       <div className="grid gap-x-12 gap-y-14 md:grid-cols-2">
