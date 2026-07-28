@@ -1,140 +1,74 @@
-# Backend Developer Portfolio Template
+# ph0ng.vercel.app
 
-[Demo](https://www.devportfoliotemplates.com/portfolio-templates/backend-developer)
+My personal site. Next.js 15 (App Router) + Tailwind + Framer Motion, deployed on Vercel.
 
-## Getting Started
-
-You have two options to get started with this template:
-
-### Option 1: Using Git Sparse Checkout
-
-If you want to clone only this specific template:
-
-```bash
-git clone --no-checkout https://github.com/devportfoliotemplates/devportfoliotemplates.git
-cd devportfoliotemplates
-git sparse-checkout init --cone
-git sparse-checkout set backend-developer-portfolio-template
-git checkout
-```
-
-### Option 2: Direct Download
-
-You can download this template as a ZIP file:
-
-1. Visit [download-directory.github.io](https://download-directory.github.io/)
-2. Paste the URL of this portfolio folder: `https://github.com/devportfoliotemplates/devportfoliotemplates/tree/main/backend-developer-portfolio-template`
-3. Download and extract the ZIP file
-
-### Running the Template
-
-Once you have the template:
-
-1. Install dependencies:
+## Running it
 
 ```bash
 npm install
-# or
-yarn install
-# or
-pnpm install
+npm run dev
 ```
 
-2. Run the development server:
+Then open [http://localhost:3000](http://localhost:3000).
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+npm run build   # production build
+npm run lint    # eslint
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser to see the portfolio.
+## Editing content
 
-## Customization
+**All copy lives in [`app/content.ts`](app/content.ts)** — bio, jobs, projects, skills, education, and links. Editing text should never mean touching a component.
 
-### Personal Information
+- `profile` — name, IPA transcription, bio, what I'm currently doing, contact links
+- `roles` — work history, newest first. Each has `org`, `title`, `place`, `start`, `end`, `stack`, `notes`
+- `earlierRoles` — the one-line footnote for older roles
+- `projects` — each has `name`, `year`, `blurb`, `tech`, and a `links` array (an empty array just hides the link row)
+- `toolkit` / `education`
 
-1. Update metadata in `app/layout.tsx`:
+To swap the resume, drop a new PDF at `public/resume.pdf`. To swap the photo, replace `public/profile.png`.
 
-   - Site title
-   - Description
-   - Open Graph metadata
-   - Favicon
+## Design system
 
-2. Modify content in `app/page.tsx`:
+Set up in [`tailwind.config.ts`](tailwind.config.ts) and [`app/globals.css`](app/globals.css).
 
-   - Hero section
-   - About section
-   - Projects
-   - Contact information
+| Token | Value | Used for |
+| --- | --- | --- |
+| `ink` | `#14131A` | page background |
+| `ink-rule` | `#2A2833` | hairline rules and borders |
+| `paper` | `#EDE8DE` | primary text |
+| `paper-dim` | `#A29CAC` | body copy |
+| `paper-faint` | `#6E6879` | labels, timestamps |
+| `amber` | `#F0A868` | accent, links, IPA |
+| `plum` | `#8A7A9B` | job titles, tech lists |
 
-3. Replace assets:
-   - Replace images in the `public` directory
-   - Update social media icons
-   - Modify logo if needed
+Type: **Fraunces** (`font-display`), **Instrument Sans** (`font-sans`), **IBM Plex Mono** (`font-mono`), all loaded via `next/font`.
 
-### Styling
+The organizing idea is a dictionary: the hero is entry 01 with an IPA pronunciation and a part-of-speech tag, and each section head is another numbered entry rendered by [`SectionHeading`](app/components/SectionHeading.tsx). If you add a section, give it the next entry number.
 
-1. Colors and Theme:
+## Structure
 
-   - Customize colors in `tailwind.config.js`
-   - Modify theme variables in `app/globals.css`
+```
+app/
+  content.ts              all site copy
+  layout.tsx              fonts + metadata
+  page.tsx                nav, section order, MotionConfig
+  globals.css             base styles, grain texture, reduced-motion
+  components/
+    HeroSection.tsx
+    WorkExperience.tsx
+    Projects.tsx
+    Toolkit.tsx           skills + education
+    ContactSection.tsx
+    SectionHeading.tsx    the numbered dictionary-entry heading
+```
 
-2. Typography:
+## Notes
 
-   - Update font families in `tailwind.config.js`
-   - Modify text sizes and weights
+- Motion respects `prefers-reduced-motion` via `MotionConfig reducedMotion="user"` in `page.tsx` plus a CSS fallback in `globals.css`.
+- Don't run `npm run build` while `npm run dev` is running — they share `.next` and the dev server will fall over.
+- A hydration warning about `data-darkreader-*` attributes comes from the Dark Reader browser extension, not from this code.
 
-3. Layout:
-   - Adjust spacing and padding in component files
-   - Modify responsive breakpoints in `tailwind.config.js`
+---
 
-## Troubleshooting
-
-### Common Issues
-
-1. **Build Errors**
-
-   - Ensure all dependencies are installed
-   - Clear `.next` folder and node_modules
-   - Run `npm install` again
-
-2. **Styling Issues**
-
-   - Run `npm run build` to ensure TailwindCSS classes are generated
-   - Check for conflicting styles in `globals.css`
-
-3. **Image Loading**
-   - Verify images are in the correct format (PNG, JPG, WebP)
-   - Check image paths are correct
-   - Ensure images are in the `public` directory
-
-## Deployment
-
-Follow these steps to deploy your portfolio for free using GitHub and Vercel:
-
-1. Create a new GitHub repository
-
-2. Push your portfolio to GitHub
-
-3. Deploy with Vercel:
-   - Go to [Vercel](https://vercel.com)
-   - Sign up or log in with GitHub
-   - Click "New Project"
-   - Import your GitHub repository
-   - Vercel will automatically detect Next.js
-   - Click "Deploy"
-
-Your portfolio will be live in minutes with a free Vercel domain (e.g., `your-repo.vercel.app`). You can later add a custom domain in your Vercel project settings.
-
-## Support
-
-If you find these templates helpful, please consider:
-
-- Starring the repository ⭐
-- Sharing with other developers
-- [Buying me a coffee](https://www.buymeacoffee.com/andreiancu) ☕
-
-For issues and feature requests, please [create an issue](https://github.com/devportfoliotemplates/devportfoliotemplates/issues).
+Originally scaffolded from [this template](https://www.devportfoliotemplates.com/portfolio-templates/backend-developer); very little of it remains.

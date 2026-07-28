@@ -1,67 +1,107 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { motion, type Variants } from "framer-motion";
+import { profile } from "../content";
+
+/* Orchestration lives on the parent variant — a bare `transition` prop won't stagger. */
+const container: Variants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.12 },
+  },
+};
+
+const rise: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0" />
-
-      <div className="relative z-10 max-w-4xl w-full mx-4 pb-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="bg-black backdrop-blur-lg rounded-lg border border-gray-800 p-6"
+    <section className="relative mx-auto max-w-5xl px-6 pb-24 pt-28 md:pb-32 md:pt-36">
+      <motion.div variants={container} initial="hidden" animate="show">
+        {/* Headword */}
+        <motion.p
+          variants={rise}
+          className="font-mono text-xs uppercase tracking-gloss text-paper-faint"
         >
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-3 h-3 rounded-full bg-red-500" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500" />
-            <div className="w-3 h-3 rounded-full bg-green-500" />
-          </div>
-          <div className="font-mono">
-            <p className="text-green-500">$ whoami</p>
-            <div className="flex items-center justify-start gap-6 mb-4">
-              <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-green-500 shadow-lg">
-                <img
-                  src="/profile.png"
-                  alt="Profile picture"
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
-              <div className="flex flex-col">
-                <h1 className="text-4xl md:text-5xl font-bold">Phong Nguyen</h1>
-                <p className="text-green-400 mt-2 mb-2">
-                  Computer Science and Linguistics @ UCLA
-                </p>
-                <p className="text-gray-400 mb-2 max-w-lg">
-                  Passionate about building impactful technology. Interested in
-                  AI infrastructure and full-stack engineering. Love cooking,
-                  fishing, and soccer.
-                </p>
-              </div>
+          entry 01
+        </motion.p>
+
+        <motion.h1
+          variants={rise}
+          className="mt-4 font-display text-[3.25rem] leading-[0.95] tracking-tight text-paper sm:text-7xl md:text-8xl"
+        >
+          {profile.name}
+        </motion.h1>
+
+        {/* Pronunciation, part of speech, gloss */}
+        <motion.div
+          variants={rise}
+          className="mt-5 flex flex-wrap items-baseline gap-x-4 gap-y-2"
+        >
+          <span className="font-mono text-lg text-amber">{profile.ipa}</span>
+          <span className="font-mono italic text-sm text-plum">
+            {profile.pos}
+          </span>
+          <span className="font-sans text-lg text-paper-dim">
+            {profile.gloss}
+          </span>
+        </motion.div>
+
+        <motion.div variants={rise} className="rule mt-10" />
+
+        {/* Definition + portrait */}
+        <div className="mt-10 flex flex-col-reverse gap-10 md:flex-row md:items-start md:justify-between md:gap-14">
+          <motion.div variants={rise} className="max-w-measure">
+            <p className="font-mono text-xs uppercase tracking-gloss text-paper-faint">
+              1.
+            </p>
+            <p className="mt-3 font-sans text-lg leading-relaxed text-paper/90 md:text-xl">
+              {profile.bio}
+            </p>
+          </motion.div>
+
+          <motion.div variants={rise} className="shrink-0">
+            <div className="group relative h-40 w-40 overflow-hidden rounded-sm ring-1 ring-ink-rule md:h-48 md:w-48">
+              <Image
+                src="/profile.png"
+                alt="Phong Nguyen"
+                fill
+                priority
+                sizes="192px"
+                className="object-cover object-center grayscale transition-[filter] duration-700 ease-out group-hover:grayscale-0"
+              />
             </div>
-            {/* <p className="text-green-500">$ skills</p>
-            <div className="flex flex-wrap gap-2 mt-2">
-              <span className="px-3 py-1 bg-green-500/10 rounded-md border border-green-500/20">
-                Full-stack
-              </span>
-              <span className="px-3 py-1 bg-green-500/10 rounded-md border border-green-500/20">
-                Python
-              </span>
-              <span className="px-3 py-1 bg-green-500/10 rounded-md border border-green-500/20">
-                C++
-              </span>
-              <span className="px-3 py-1 bg-green-500/10 rounded-md border border-green-500/20">
-                AWS
-              </span>
-              <span className="px-3 py-1 bg-green-500/10 rounded-md border border-green-500/20">
-                Machine Learning
-              </span>
-            </div> */}
+          </motion.div>
+        </div>
+
+        {/* Currently */}
+        <motion.div variants={rise} className="mt-14">
+          <div className="rule" />
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 pt-5">
+            <span className="font-mono text-xs uppercase tracking-gloss text-amber">
+              currently
+            </span>
+            <span className="font-sans text-base text-paper">
+              {profile.currently.role}
+            </span>
+            <span className="text-paper-faint">·</span>
+            <span className="font-sans text-base text-paper-dim">
+              {profile.currently.org}
+            </span>
+            <span className="text-paper-faint">·</span>
+            <span className="font-mono text-sm text-paper-faint">
+              {profile.currently.place}
+            </span>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

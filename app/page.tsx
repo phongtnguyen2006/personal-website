@@ -1,80 +1,88 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { MotionConfig, motion } from "framer-motion";
 import HeroSection from "./components/HeroSection";
-import SystemArchitecture from "./components/SystemArchitecture";
-import TechnicalMetrics from "./components/TechnicalMetrics";
+import WorkExperience from "./components/WorkExperience";
+import Projects from "./components/Projects";
+import Toolkit from "./components/Toolkit";
 import ContactSection from "./components/ContactSection";
 
-export default function BackendPortfolio() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+const navItems = [
+  { label: "work", id: "work" },
+  { label: "builds", id: "builds" },
+  { label: "toolkit", id: "toolkit" },
+  { label: "say hi", id: "contact" },
+];
+
+export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <main className="min-h-screen bg-[#1A1A1A] text-white overflow-x-hidden relative">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
-      </div>
+    <MotionConfig reducedMotion="user">
+    <div className="grain relative min-h-screen overflow-x-hidden bg-ink">
+      {/* Ambient warmth behind the masthead so the ink doesn't read as flat black */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-[70vh] bg-[radial-gradient(ellipse_70%_50%_at_50%_-10%,rgba(240,168,104,0.10),transparent_70%)]"
+      />
 
-      {/* Navigation Bar */}
       <motion.nav
-        initial={{ y: -100, opacity: 0 }}
+        initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-lg border-b border-gray-800"
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+          scrolled
+            ? "border-b border-ink-rule bg-ink/80 backdrop-blur-md"
+            : "border-b border-transparent"
+        }`}
       >
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="text-green-500 font-mono font-bold text-xl"
-            >
-              phong.dev
-            </motion.div>
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-6 py-4 sm:gap-6">
+          <a
+            href="#top"
+            className="font-display text-lg tracking-tight text-paper transition-colors hover:text-amber"
+          >
+            p.n.
+          </a>
 
-            <div className="flex items-center space-x-8">
-              {[
-                { name: "Home", id: "hero" },
-                { name: "Work Experience", id: "metrics" },
-                { name: "Projects", id: "architecture" },
-                { name: "Contact", id: "contact" },
-              ].map((item, index) => (
-                <motion.button
-                  key={item.id}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 + index * 0.1 }}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-gray-300 hover:text-green-500 transition-colors duration-200 font-mono text-sm"
+          <ul className="flex items-center gap-3.5 sm:gap-7">
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className="font-mono text-xs uppercase tracking-[0.06em] text-paper-dim transition-colors duration-200 hover:text-amber sm:tracking-gloss"
                 >
-                  {item.name}
-                </motion.button>
-              ))}
-            </div>
-          </div>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </motion.nav>
 
-      <div className="relative z-10 pt-20">
-        <div id="hero">
-          <HeroSection />
+      <main id="top" className="relative z-10">
+        <HeroSection />
+        <div id="work" className="scroll-mt-24">
+          <WorkExperience />
         </div>
-        <div id="metrics">
-          <TechnicalMetrics />
+        <div id="builds" className="scroll-mt-24">
+          <Projects />
         </div>
-        <div id="architecture">
-          <SystemArchitecture />
+        <div id="toolkit" className="scroll-mt-24">
+          <Toolkit />
         </div>
-        <div id="contact">
+        <div id="contact" className="scroll-mt-24">
           <ContactSection />
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
+    </MotionConfig>
   );
 }

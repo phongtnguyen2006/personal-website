@@ -1,64 +1,66 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const display = Fraunces({
+  variable: "--font-display",
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sans = Instrument_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
 });
+
+const mono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const summary =
+  "Phong Nguyen — CS and Linguistics at UCLA. I build the plumbing behind AI agents: RAG pipelines, MCP servers, and data infrastructure. Currently an investment software engineer intern at Sixth Street Partners in New York.";
 
 export const metadata: Metadata = {
-  title: "Phong Nguyen",
-  description:
-    "Welcome to my portfolio! I am a passionate backend developer specializing in building scalable server architectures, robust APIs, and high-performance distributed systems. With expertise in cloud infrastructure and database optimization, I create efficient and reliable backend solutions.",
+  metadataBase: new URL("https://ph0ng.vercel.app"),
+  title: "Phong Nguyen — CS + Linguistics @ UCLA",
+  description: summary,
   keywords: [
-    "Backend Developer",
-    "Software Engineer",
-    "System Architecture",
-    "API Development",
-    "Database Design",
-    "Cloud Computing",
-    "Microservices",
-    "DevOps",
     "Phong Nguyen",
-    "Node.js",
+    "UCLA",
+    "Computer Science",
+    "Linguistics",
+    "Software Engineer",
+    "AI Agents",
+    "Model Context Protocol",
+    "MCP",
+    "RAG",
     "Python",
-    "Java",
-    "Distributed Systems",
-    "System Design",
-    "Backend Architecture",
+    "TypeScript",
+    "FastAPI",
+    "AWS",
+    "Data Engineering",
+    "Software Engineer Intern",
   ],
-  authors: [{ name: "Phong Nguyen" }],
+  authors: [{ name: "Phong Nguyen", url: "https://github.com/phongtnguyen2006" }],
   creator: "Phong Nguyen",
   openGraph: {
-    title: "Phong Nguyen",
-    description:
-      "Passionate backend developer crafting scalable and efficient server architectures. Explore my projects and technical expertise.",
-    url: "https://your-domain.com",
-    siteName: "Phong Nguyen - Portfolio",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Phong Nguyen",
-      },
-    ],
+    title: "Phong Nguyen — CS + Linguistics @ UCLA",
+    description: summary,
+    url: "https://ph0ng.vercel.app",
+    siteName: "Phong Nguyen",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Phong Nguyen",
-    description:
-      "Passionate backend developer crafting scalable and efficient server architectures. Explore my projects and technical expertise.",
-    creator: "@yourusername",
-    images: ["/og-image.jpg"],
+    title: "Phong Nguyen — CS + Linguistics @ UCLA",
+    description: summary,
   },
   robots: {
     index: true,
@@ -81,7 +83,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${display.variable} ${sans.variable} ${mono.variable} font-sans antialiased`}
       >
         {children}
       </body>
